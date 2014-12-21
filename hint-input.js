@@ -30,7 +30,10 @@
             }, closeDealay);
         },
         useHint: function (e, v, s) {
-            this.input.value = this.input.value.trim() + " " + s.getAttribute('hint');
+            if (this.append)
+                this.input.value = this.input.value.trim() + " " + s.getAttribute('hint');
+            else
+                this.input.value = s.getAttribute('hint');
             this.input.focus();
             this.close();
         },
@@ -50,6 +53,7 @@
         },
         hints: [],
         threshold: 650,
-        value: ''
+        value: '',
+        append: true
     });
 })();
