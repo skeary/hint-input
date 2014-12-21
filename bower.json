@@ -6,10 +6,10 @@
     "Georgy Chirkov <mail@gich.co>"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#master",
-    "paper-input": "Polymer/paper-input#master",
-    "paper-dropdown": "Polymer/paper-dropdown#master",
-    "paper-item": "Polymer/paper-item#master"
+    "polymer": "Polymer/polymer#~0.5.2",
+    "paper-input": "Polymer/paper-input#~0.5.2",
+    "paper-dropdown": "Polymer/paper-dropdown#~0.5.2",
+    "paper-item": "Polymer/paper-item#~0.5.2"
   },
   "description": "WebComponent for search suggestions",
   "main": "hint-input.html",
