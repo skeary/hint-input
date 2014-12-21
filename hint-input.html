@@ -1,0 +1,81 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-input/paper-input-decorator.html">
+
+<polymer-element name="hint-input" attributes="threshold provider closeSelector hints">
+    <template>
+        <content select="paper-input"></content>
+        <template if="{{hints}}">
+            <paper-dropdown class="no-padding" id="dropdown"
+                            autoFocusDisabled="true"
+                            autoCloseDisabled="true">
+                <template repeat="{{hint in hints}}">
+                    <paper-item on-tap="{{changeValue}}">{{hint}}</paper-item>
+                </template>
+            </paper-dropdown>
+        </template>
+
+        <style>
+            paper-dropdown {
+                position: relative;
+                top: 5em;
+                width: 95%;
+            }
+        </style>
+    </template>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var changeTimeout, closeTimeout;
+            var redrawFix = 500;
+            var closeDealay = 300;
+
+            Polymer('hint-input', {
+                update: function () {
+                    var self = this;
+                    this.provider(this.input.value, function (hints) {
+                        if (hints && hints.length <= 0) return;
+                        self.hints = hints;
+                        setTimeout(function () {
+                            self.$.dropdown.open();
+                        }, redrawFix);
+                    });
+                },
+                setup: function () {
+                    var self = this;
+                    var input = this.input = this.querySelector('paper-input').$.decorator.querySelector("input");
+                    this.changeValue = function (e, x, s) {
+                        self.input.value = s.innerHTML;
+                        self.input.focus();
+                        setTimeout(function () {
+                            clearTimeout(closeTimeout)
+                        }, closeDealay / 2);
+                    };
+                    input.addEventListener('keyup', function () {
+                        clearTimeout(changeTimeout);
+                        changeTimeout = setTimeout(self.update.bind(self), self.threshold);
+                    });
+                    input.addEventListener('focus', this.update.bind(this));
+                    input.addEventListener('blur', function () {
+                        clearTimeout(changeTimeout);
+                        clearTimeout(closeTimeout);
+                        closeTimeout = setTimeout(function () {
+                            self.$.dropdown.close()
+                        }, closeDealay);
+                    });
+                },
+                ready: function () {
+                    this.setup();
+                },
+                provider: function (v, cb) {
+                    cb(this.hints);
+                },
+                hints: [],
+                threshold: 650
+            });
+        })();
+    </script>
+</polymer-element>

@@ -1,0 +1,29 @@
+{
+  "name": "hint-input",
+  "version": "0.0.1",
+  "homepage": "https://github.com/yura415/hint-input",
+  "authors": [
+    "Georgy Chirkov <mail@gich.co>"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#master",
+    "paper-input": "Polymer/paper-input#master",
+    "paper-dropdown": "Polymer/paper-dropdown#master",
+    "paper-item": "Polymer/paper-item#master"
+  },
+  "description": "WebComponent for search suggestions",
+  "main": "hint-input.html",
+  "keywords": [
+    "polymer",
+    "webcomponent",
+    "suggestions"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
