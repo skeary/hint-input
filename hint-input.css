@@ -1,0 +1,31 @@
+:host {
+    position: relative;
+    display: inline-block;
+}
+
+:host(.expand) paper-dropdown {
+    width:100%;
+}
+
+paper-dropdown {
+    position: absolute;
+    top: 3em;
+}
+
+paper-dropdown paper-item {
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+paper-dropdown paper-item paper-ripple {
+    position: relative;
+}
+
+paper-item {
+    color: black;
+}
+
+paper-item .original {
+    color: grey;
+}
