@@ -3,7 +3,6 @@
 
     var changeTimeout, closeTimeout;
     var redrawFix = 500;
-    var closeDealay = 300;
 
     Polymer('hint-input', {
         update: function () {
@@ -27,7 +26,7 @@
             clearTimeout(closeTimeout);
             closeTimeout = setTimeout(function () {
                 self.$.dropdown.close()
-            }, closeDealay);
+            }, this.closeDelay);
         },
         useHint: function (e, v, s) {
             if (this.append)
@@ -52,8 +51,9 @@
             cb(this.hints);
         },
         hints: [],
-        threshold: 650,
+        threshold: 400,
         value: '',
-        append: true
+        append: true,
+        closeDelay: 150
     });
 })();

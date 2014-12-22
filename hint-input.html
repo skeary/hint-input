@@ -3,7 +3,7 @@
 <link rel="import" href="../paper-item/paper-item.html">
 <link rel="import" href="../paper-input/paper-input-decorator.html">
 
-<polymer-element name="hint-input" attributes="threshold provider closeSelector hints append">
+<polymer-element name="hint-input" attributes="threshold provider hints append closeDelay">
     <template>
         <content select="paper-input"></content>
         <template if="{{hints}}">
@@ -11,7 +11,8 @@
                             autoFocusDisabled="true"
                             autoCloseDisabled="true">
                 <template repeat="{{hint in hints}}">
-                    <paper-item on-tap="{{useHint}}" hint="{{hint}}"><span class="original">{{value}}</span>&nbsp;{{hint}}
+                    <paper-item on-tap="{{useHint}}" hint="{{hint}}">
+                        <template if="{{append}}"><span class="original">{{value}}</span></template>&nbsp;{{hint}}
                     </paper-item>
                 </template>
             </paper-dropdown>
