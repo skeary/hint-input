@@ -12,7 +12,7 @@
                             autoCloseDisabled="true">
                 <template repeat="{{hint in hints}}">
                     <paper-item on-tap="{{useHint}}" hint="{{hint}}">
-                        <template if="{{append}}"><span class="original">{{value}}</span></template>&nbsp;{{hint}}
+                        <span class="original" hidden?="{{!append}}">{{value}}</span>&nbsp;{{hint}}
                     </paper-item>
                 </template>
             </paper-dropdown>
