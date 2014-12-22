@@ -5,23 +5,27 @@
     var redrawFix = 500;
 
     Polymer('hint-input', {
+        focused: false,
         update: function () {
             var self = this;
             this.provider(this.input.value, function (hints) {
                 if (hints && hints.length <= 0) return;
                 self.hints = hints;
                 self.value = self.input.value;
-                setTimeout(function () {
-                    self.$.dropdown.open();
-                }, redrawFix);
+                if (self.focused)
+                    setTimeout(function () {
+                        self.$.dropdown.open();
+                    }, redrawFix);
             });
         },
         open: function () {
+            this.focused = true;
             clearTimeout(changeTimeout);
             changeTimeout = setTimeout(this.update.bind(this), this.threshold);
         },
         close: function () {
             var self = this;
+            this.focused = false;
             clearTimeout(changeTimeout);
             clearTimeout(closeTimeout);
             closeTimeout = setTimeout(function () {
