@@ -29,3 +29,7 @@ paper-item {
 paper-item .original {
     color: grey;
 }
+
+paper-item.more {
+    color: #2196f3; // Blue from material light theme
+}
